@@ -2,17 +2,26 @@ import { MealProps } from "@screens/NewMeal";
 
 export function formattedDate(date: string){
     const newDate = new Date(date);
-    const day = newDate.getDate() < 10 ? '0'+ newDate.getDate() : newDate.getDate();
-    const month = newDate.getMonth() < 10 ? '0'+ (newDate.getMonth() + 1) : newDate.getMonth() + 1;
-    const stringFormatted = day+'/'+month+'/'+ newDate.getFullYear();
+    const stringFormatted = newDate.toLocaleDateString();
+    /* 
+        const day = newDate.getDate() < 10 ? '0'+ newDate.getDate() : newDate.getDate();
+        const month = newDate.getMonth() < 10 ? '0'+ (newDate.getMonth() + 1) : newDate.getMonth() + 1;
+        const stringFormatted = day+'/'+month+'/'+ newDate.getFullYear(); 
+    */
     return stringFormatted
 }
 
 export function formattedTime(time: string){
     const newTime = new Date(time);
-    const hours = newTime.getHours() < 10 ? '0' + newTime.getHours() : newTime.getHours();
-    const minutes = newTime.getMinutes() < 10 ? '0' + newTime.getMinutes() : newTime.getMinutes();
-    return hours + ':' + minutes 
+    const time = newTime.toLocaleString('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit' 
+    })
+    /* 
+        const hours = newTime.getHours() < 10 ? '0' + newTime.getHours() : newTime.getHours();
+        const minutes = newTime.getMinutes() < 10 ? '0' + newTime.getMinutes() : newTime.getMinutes();
+    */
+    return time 
 }
 
 export function getMealsOutOfDiet(meals: MealProps[] = []) {
